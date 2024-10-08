@@ -5,15 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>自我介紹</title>
     <style>
+        :root {
+            --main-bg-color: #2c3e50;
+            --primary-color: #ecf0f1;
+            --secondary-color: rgba(255, 255, 255, 0.1);
+            --accent-color: #8e44ad;
+        }
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            background: linear-gradient(135deg, #ff6b6b, #f06595, #6a4c93);
+            background-color: var(--main-bg-color);
+            background: linear-gradient(135deg, #2c3e50, #8e44ad);
             background-size: 400% 400%;
-            animation: gradientAnimation 15s ease infinite;
-            color: #fff;
+            animation: gradientAnimation 15s ease infinite;/*背景漸變動畫*/
+            color: var(--primary-color);
         }
 
         @keyframes gradientAnimation {
@@ -41,13 +47,13 @@
         .header h1 {
             font-size: 2.5em;
             letter-spacing: 2px;
-            background: linear-gradient(90deg, #ff7eb9, #ff65a3, #7afcff, #feff9c);
-            background-clip: text; /*屬性確保背景顏色只在文字內部顯示*/
+            background: linear-gradient(90deg, #2980b9, #8e44ad);
+            background-clip: text;
             -webkit-background-clip: text;
-            color: transparent; /*文字透明*/
-            opacity: 0;/*初始設置為完全透明，使得文字在一開始不可見，隨後會通過動畫顯示。*/
-            transform: translateY(-50px);/*將文字向上移動 50 像素，這是動畫效果的一部分，讓文字在出現時有一個從下方滑入的效果。*/
-            animation: textAppear 1.5s ease-out forwards;/*使用名為 textAppear 的動畫，動畫持續時間為 1.5 秒，使用 ease-out 動畫過渡效果。forwards 使動畫結束時保持最終狀態。*/
+            color: transparent;
+            opacity: 0;
+            transform: translateY(-50px);
+            animation: textAppear 1.5s ease-out forwards;
         }
 
         @keyframes textAppear {
@@ -67,33 +73,50 @@
 
         .section {
             margin: 50px 0;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: scale(1.02);
         }
 
         .section h2 {
-            color: #dbccc4; /* 深棕色 */
-            font-size: 2em; /* 可根據需要調整字體大小 */
+            color: var(--primary-color);
+            font-size: 2em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 10px;
         }
 
         .section p {
-            color: #fff;
-            background-color: rgba(0, 0, 0, 0.6);
+            color: var(--primary-color);
             padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);/*[陰影]的水平偏移量為 0 像素，垂直偏移量為 4 像素，模糊半徑為 10 像素，顏色為 20% */
-            transition: transform 0.3s ease, background-color 0.3s;/*過渡效果*/
+            transition: background-color 0.3s;
         }
 
-        .section p:hover { /*懸停效果進行了設置*/
-            transform: translateY(-10px);
-            background-color: rgba(255, 255, 255, 0.1);
+        .section p:hover {
+            background-color: var(--accent-color);
+        }
+
+        .profile-img {
+            width: 150px; /* 可根據需要調整大小 */
+            height: 150px; /* 確保圖片為正方形 */
+            border-radius: 50%; /* 圓形效果 */
+            display: block;
+            object-fit:cover; /*保持圖片原始比例，並完全填滿父元素*/
+            margin: 0 auto 15px; /* 自動居中，並在圖片下方添加一些間距 */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 添加陰影 */
         }
 
         .floating-button {
-            position: fixed;/*固定定位，不會隨著頁面滾動而移動。*/
+            position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: #ff6b6b;
-            color: #fff;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
             border: none;
             padding: 15px 30px;
             cursor: pointer;
@@ -104,8 +127,29 @@
         }
 
         .floating-button:hover {
-            background-color: #ff7eb9;
-            transform: scale(1.1);/*按鈕縮放變換*/
+            background-color: #9b59b6;
+            transform: scale(1.1);
+        }
+
+        .contact {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 5px 15px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .contact ul {
+            list-style-type: none;
+        }
+
+        .contact a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact a:hover {
+            color: #9b59b6;
         }
     </style>
 </head>
@@ -116,6 +160,7 @@
     <div class="content">
         <div class="section" id="about">
             <h2>關於我</h2>
+            <img src="./original.jpg" alt="YingTing的照片" class="profile-img">
             <p>
                 我是YingTing，熱愛學習與挑戰，對技術和創意擁有無限熱情。
             </p>
@@ -132,13 +177,13 @@
             <h2>技能</h2>
             <p>我學習過以下技能：<br>
                 - HTML, CSS, JavaScript<br>
-                - php<br>
+                - PHP<br>
                 - Python, C++<br>
                 - Word, Excel, PowerPoint<br>
             </p>
         </div>
         <div class="section" id="Certificate">
-            <h2>技能</h2>
+            <h2>證照</h2>
             <p>考過以下證照:<br>
                 - 數位電子-乙級<br>
                 - 工業電子-丙級<br>
@@ -147,15 +192,17 @@
                 - AWS雲端從業人員認證
             </p>
         </div>
-        <div class="section" id="contact">
-            <h2>聯絡我</h2>
-            <p>
-                如果您對我的工作感興趣，請隨時通過以下方式聯絡我：<br>
-                電子郵件：C112156130@nkust.edu.tw<br>
-                電話：0967000000<br>
-            </p>
-        </div>
     </div>
+    <div class="contact" id="contact">
+        <p>
+            如果您對我的工作感興趣，請隨時通過以下方式聯絡我：<br>
+            <ul>
+                <li>電子郵件：<a href="mailto:C112156130@nkust.edu.tw">C112156130@nkust.edu.tw</a></li>
+                <li>電話：<a href="tel:0967000000">0967000000</a></li>
+            </ul>
+        </p>
+    </div>
+
     <button class="floating-button" onclick="scrollToTop()">回到頂部</button>
     <script>
         function scrollToTop() {
