@@ -1,107 +1,110 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-tw">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>個人簡介</title>
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #0d0d0d;
-            color: #ffffff;
+        body, html {
             margin: 0;
             padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            background: #f0f0f0;
         }
         .container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.5s ease-in-out;
+        }
+        .page {
             width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
-        header {
-            background: #1a1a1a;
-            color: #ffffff;
-            padding-top: 30px;
-            min-height: 70px;
-            border-bottom: #00ccff 3px solid;
-        }
-        header a {
-            color: #ffffff;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 16px;
-        }
-        header ul {
-            padding: 0;
-            list-style: none;
-        }
-        header li {
-            float: left;
-            display: inline;
-            padding: 0 20px 0 20px;
-        }
-        header #branding {
-            float: left;
-        }
-        header #branding h1 {
-            margin: 0;
-        }
-        header nav {
-            float: right;
-            margin-top: 10px;
-        }
-        .content {
+            max-width: 800px;
+            background: white;
             padding: 20px;
-            background: #1a1a1a;
-            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
             border-radius: 10px;
         }
-        .content h2 {
-            color: #00ccff;
+        .page h1 {
+            margin-top: 0;
+            font-size: 2em;
+            color: #333;
         }
-        .content p {
-            color: #cccccc;
+        .page p {
+            font-size: 1.2em;
+            color: #666;
+            line-height: 1.6;
         }
-        footer {
-            background: #1a1a1a;
-            color: #ffffff;
-            text-align: center;
-            padding: 10px 0;
-            margin-top: 20px;
-            border-top: #00ccff 3px solid;
+        .nav-buttons {
+            position: fixed;
+            bottom: 20px;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        .nav-buttons button {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .nav-buttons button:hover {
+            background: #555;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div id="branding">
-                <h1>yingting個人簡介</h1>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#about">關於我</a></li>
-                    <li><a href="#skills">技能</a></li>
-                    <li><a href="#contact">聯絡方式</a></li>
-                </ul>
-            </nav>
+    <div class="container" id="container">
+        <div class="page">
+            <h1>個人簡介</h1>
+            <p>你好，我是Yingting-992，一名熱愛程式設計的學生，專注於前端開發和用戶體驗設計。</p>
         </div>
-    </header>
-    <div class="container">
-        <section id="about" class="content">
-            <h2>關於我</h2>
-            <p>這裡是你的個人簡介。你可以介紹你的背景、興趣和經歷。</p>
-        </section>
-        <section id="skills" class="content">
-            <h2>技能</h2>
-            <p>這裡列出你的技能和專長。例如：程式設計、網頁開發、資料分析等。</p>
-        </section>
-        <section id="contact" class="content">
-            <h2>聯絡方式</h2>
-            <p>這裡提供你的聯絡資訊，例如電子郵件、電話號碼或社交媒體連結。</p>
-        </section>
+        <div class="page">
+            <h1>技能</h1>
+            <p>精通HTML、CSS、JavaScript，熟悉React和Vue框架，擁有豐富的網頁開發經驗。</p>
+        </div>
+        <div class="page">
+            <h1>聯絡方式</h1>
+            <p>電子郵件: C112156130@nkust.edu.tw</p>
+        </div>
     </div>
-    <footer>
-        <p>© 2023 個人簡介. 版權所有.</p>
-    </footer>
+    <div class="nav-buttons">
+        <button onclick="prevPage()">上一頁</button>
+        <button onclick="nextPage()">下一頁</button>
+    </div>
+    <script>
+        let currentPage = 0;
+        const container = document.getElementById('container');
+        const pages = document.querySelectorAll('.page');
+
+        function updatePage() {
+            container.style.transform = `translateY(-${currentPage * 100}vh)`;
+        }
+
+        function nextPage() {
+            if (currentPage < pages.length - 1) {
+                currentPage++;
+                updatePage();
+            }
+        }
+
+        function prevPage() {
+            if (currentPage > 0) {
+                currentPage--;
+                updatePage();
+            }
+        }
+    </script>
 </body>
 </html>
