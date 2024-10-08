@@ -3,76 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>個人簡介</title>
+    <title>YingTing的字介</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
-        }
-        .header {
-            background-color: #333;
+            background: linear-gradient(135deg, #ff6b6b, #f06595, #6a4c93);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
             color: #fff;
-            padding: 20px 0;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .header {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 30px 0;
             text-align: center;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
         }
-        .content {
-            padding: 100px 20px 20px 20px;
+
+        .header h1 {
+            font-size: 2.5em;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #ff7eb9, #ff65a3, #7afcff, #feff9c);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            opacity: 0;
+            transform: translateY(-50px);
+            animation: textAppear 1.5s ease-out forwards;
         }
+
+        @keyframes textAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .nav {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            z-index: 100;
+        }
+
+        .nav a {
+            color: #fff;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .nav a:hover {
+            background-color: #ff65a3;
+            border-radius: 5px;
+            transform: scale(1.1);
+        }
+
+        .content {
+            padding: 140px 20px 20px 20px;
+        }
+
         .section {
             margin: 50px 0;
         }
+
         .section h2 {
-            color: #333;
+            color: #fff;
+            background: linear-gradient(90deg, #ff7eb9, #ff65a3, #7afcff, #feff9c);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
         }
+
         .section p {
-            color: #666;
-            transition: transform 0.3s ease;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, background-color 0.3s;
         }
+
+        .section p:hover {
+            transform: translateY(-10px);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
         .floating-button {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: #333;
+            background-color: #ff6b6b;
             color: #fff;
             border: none;
-            padding: 10px 20px;
+            padding: 15px 30px;
             cursor: pointer;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s, transform 0.3s;
         }
+
+        .floating-button:hover {
+            background-color: #ff7eb9;
+            transform: scale(1.1);
+        }
+
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>個人簡介</h1>
+        <h1>YingTing的字介</h1>
+    </div>
+    <div class="nav">
+        <a href="#about">關於我</a>
+        <a href="#experience">經歷</a>
+        <a href="#skills">技能</a>
+        <a href="#contact">聯絡我</a>
     </div>
     <div class="content">
-        <div class="section">
+        <div class="section" id="about">
             <h2>關於我</h2>
-            <p class="floating-text">我是[你的名字]，一位專業的[你的職業]，擁有多年的經驗和豐富的技能。我專注於[你的專業領域]，並且對於[相關技能或技術]有深入的了解。</p>
-        </div>
-        <div class="section">
-            <h2>經歷</h2>
-            <p class="floating-text">我曾在[公司名稱]擔任[職位]，負責[主要職責]。在此期間，我成功地[主要成就]。</p>
-        </div>
-        <div class="section">
-            <h2>技能</h2>
-            <p class="floating-text">我擁有以下技能：<br>
-                - 技能1<br>
-                - 技能2<br>
-                - 技能3<br>
-                - 技能4<br>
+            <p>
+                我是YingTing，熱愛學習與挑戰，對技術和創意擁有無限熱情。
             </p>
         </div>
-        <div class="section">
+        <div class="section" id="experience">
+            <h2>經歷</h2>
+            <p>
+                學歷：<br>
+                - 高雄市海青工商職業學校 - 資訊科<br>
+                - 高雄科技大學(燕巢校區) - 智慧商務系 (目前就讀)<br><br>
+                工作經歷：<br>
+                曾在[公司名稱]擔任[職位]，負責[主要職責]，在此期間成功完成[主要成就]。
+            </p>
+        </div>
+        <div class="section" id="skills">
+            <h2>技能</h2>
+            <p>我擁有以下技能：<br>
+                - HTML, CSS, JavaScript<br>
+                - Web Design<br>
+                - Responsive Design<br>
+                - JavaScript Frameworks<br>
+            </p>
+        </div>
+        <div class="section" id="contact">
             <h2>聯絡我</h2>
-            <p class="floating-text">如果您對我的工作感興趣，請隨時通過以下方式聯絡我：<br>
+            <p>
+                如果您對我的工作感興趣，請隨時通過以下方式聯絡我：<br>
                 電子郵件：[你的電子郵件]<br>
                 電話：[你的電話號碼]<br>
             </p>
@@ -80,19 +185,6 @@
     </div>
     <button class="floating-button" onclick="scrollToTop()">回到頂部</button>
     <script>
-        document.addEventListener('scroll', function() {
-            const floatingTexts = document.querySelectorAll('.floating-text');
-            const scrollPosition = window.scrollY;
-
-            floatingTexts.forEach(text => {
-                if (scrollPosition > 100) {
-                    text.style.transform = 'translateY(-10px)';
-                } else {
-                    text.style.transform = 'translateY(0)';
-                }
-            });
-        });
-
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
