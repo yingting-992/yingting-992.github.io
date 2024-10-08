@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-tw">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,80 +8,80 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f5f5f5;
         }
-        .header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px 0;
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        header {
             text-align: center;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
+            margin-bottom: 40px;
         }
-        .content {
-            padding: 100px 20px 20px 20px;
-        }
-        .section {
-            margin: 50px 0;
-        }
-        .section h2 {
+
+        h1 {
+            font-size: 2.5em;
             color: #333;
         }
-        .section p {
-            color: #666;
+
+        h2 {
+            color: #555;
+            margin-top: 30px;
         }
-        .floating-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #333;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+        .profile {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .profile:hover {
+            transform: translateY(-10px);
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>個人簡介</h1>
-    </div>
-    <div class="content">
-        <div class="section">
+    <div class="container">
+        <header>
+            <h1>你的名字</h1>
+            <p>前端工程師 | 網頁設計師 | 技術愛好者</p>
+        </header>
+        <section class="profile">
             <h2>關於我</h2>
-            <p>我是[你的名字]，一位專業的[你的職業]，擁有多年的經驗和豐富的技能。我專注於[你的專業領域]，並且對於[相關技能或技術]有深入的了解。</p>
-        </div>
-        <div class="section">
-            <h2>經歷</h2>
-            <p>我曾在[公司名稱]擔任[職位]，負責[主要職責]。在此期間，我成功地[主要成就]。</p>
-        </div>
-        <div class="section">
+            <p>我是一位專精於 HTML、CSS 和 JavaScript 的前端工程師，擁有多年的網頁開發經驗。我熱愛設計美觀且高效的網站，並且持續學習最新的技術趨勢。</p>
             <h2>技能</h2>
-            <p>我擁有以下技能：<br>
-                - 技能1<br>
-                - 技能2<br>
-                - 技能3<br>
-                - 技能4<br>
-            </p>
-        </div>
-        <div class="section">
-            <h2>聯絡我</h2>
-            <p>如果您對我的工作感興趣，請隨時通過以下方式聯絡我：<br>
-                電子郵件：[你的電子郵件]<br>
-                電話：[你的電話號碼]<br>
-            </p>
-        </div>
+            <ul>
+                <li>HTML5、CSS3</li>
+                <li>JavaScript (ES6+)</li>
+                <li>React / Vue.js</li>
+                <li>Responsive Design</li>
+                <li>網頁性能優化</li>
+            </ul>
+            <h2>經歷</h2>
+            <p>曾任職於多家知名科技公司，參與過多個大型專案，負責前端開發和團隊合作。</p>
+        </section>
     </div>
-    <button class="floating-button" onclick="scrollToTop()">回到頂部</button>
     <script>
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        document.addEventListener('scroll', function() {
+            const profileSection = document.querySelector('.profile');
+            const scrollPosition = window.scrollY;
+
+            if (scrollPosition > 100) {
+                profileSection.style.transform = 'translateY(-10px)';
+            } else {
+                profileSection.style.transform = 'translateY(0)';
+            }
+        });
     </script>
 </body>
 </html>
