@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YingTing的字介</title>
+    <meta name="description" content="YingTing的個人簡介，包含關於我、經歷、技能和聯絡方式。">
+    <meta name="keywords" content="YingTing, 個人簡介, 技能, 經歷, 聯絡">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,6 +16,7 @@
             background-size: 400% 400%;
             animation: gradientAnimation 15s ease infinite;
             color: #fff;
+            scroll-behavior: smooth;
         }
 
         @keyframes gradientAnimation {
@@ -61,8 +64,29 @@
             }
         }
 
+        .nav {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            width: 100%;
+            top: 60px;
+            z-index: 999;
+        }
+
+        .nav a {
+            color: #fff;
+            padding: 15px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .nav a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
         .content {
-            padding: 160px 20px 20px 20px;
+            padding: 200px 20px 20px 20px;
         }
 
         .section {
@@ -112,6 +136,12 @@
 <body>
     <div class="header">
         <h1>YingTing的字介</h1>
+    </div>
+    <div class="nav">
+        <a href="#about">關於我</a>
+        <a href="#experience">經歷</a>
+        <a href="#skills">技能</a>
+        <a href="#contact">聯絡我</a>
     </div>
     <div class="content">
         <div class="section" id="about">
