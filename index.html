@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YingTing的字介</title>
-    <meta name="description" content="YingTing的個人簡介，包含關於我、經歷、技能和聯絡方式。">
-    <meta name="keywords" content="YingTing, 個人簡介, 技能, 經歷, 聯絡">
+    <title>自我介紹</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,7 +14,6 @@
             background-size: 400% 400%;
             animation: gradientAnimation 15s ease infinite;
             color: #fff;
-            scroll-behavior: smooth;
         }
 
         @keyframes gradientAnimation {
@@ -45,12 +42,12 @@
             font-size: 2.5em;
             letter-spacing: 2px;
             background: linear-gradient(90deg, #ff7eb9, #ff65a3, #7afcff, #feff9c);
-            background-clip: text;
+            background-clip: text; /*屬性確保背景顏色只在文字內部顯示*/
             -webkit-background-clip: text;
-            color: transparent;
-            opacity: 0;
-            transform: translateY(-50px);
-            animation: textAppear 1.5s ease-out forwards;
+            color: transparent; /*文字透明*/
+            opacity: 0;/*初始設置為完全透明，使得文字在一開始不可見，隨後會通過動畫顯示。*/
+            transform: translateY(-50px);/*將文字向上移動 50 像素，這是動畫效果的一部分，讓文字在出現時有一個從下方滑入的效果。*/
+            animation: textAppear 1.5s ease-out forwards;/*使用名為 textAppear 的動畫，動畫持續時間為 1.5 秒，使用 ease-out 動畫過渡效果。forwards 使動畫結束時保持最終狀態。*/
         }
 
         @keyframes textAppear {
@@ -64,29 +61,8 @@
             }
         }
 
-        .nav {
-            display: flex;
-            justify-content: center;
-            background-color: rgba(0, 0, 0, 0.8);
-            position: fixed;
-            width: 100%;
-            top: 60px;
-            z-index: 999;
-        }
-
-        .nav a {
-            color: #fff;
-            padding: 15px 20px;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
-
-        .nav a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
         .content {
-            padding: 200px 20px 20px 20px;
+            padding: 160px 20px 20px 20px;
         }
 
         .section {
@@ -94,7 +70,7 @@
         }
 
         .section h2 {
-            color: #4e3b31; /* 深棕色 */
+            color: #dbccc4; /* 深棕色 */
             font-size: 2em; /* 可根據需要調整字體大小 */
         }
 
@@ -103,17 +79,17 @@
             background-color: rgba(0, 0, 0, 0.6);
             padding: 15px;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, background-color 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);/*[陰影]的水平偏移量為 0 像素，垂直偏移量為 4 像素，模糊半徑為 10 像素，顏色為 20% */
+            transition: transform 0.3s ease, background-color 0.3s;/*過渡效果*/
         }
 
-        .section p:hover {
+        .section p:hover { /*懸停效果進行了設置*/
             transform: translateY(-10px);
             background-color: rgba(255, 255, 255, 0.1);
         }
 
         .floating-button {
-            position: fixed;
+            position: fixed;/*固定定位，不會隨著頁面滾動而移動。*/
             bottom: 20px;
             right: 20px;
             background-color: #ff6b6b;
@@ -129,19 +105,13 @@
 
         .floating-button:hover {
             background-color: #ff7eb9;
-            transform: scale(1.1);
+            transform: scale(1.1);/*按鈕縮放變換*/
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>YingTing的字介</h1>
-    </div>
-    <div class="nav">
-        <a href="#about">關於我</a>
-        <a href="#experience">經歷</a>
-        <a href="#skills">技能</a>
-        <a href="#contact">聯絡我</a>
+        <h1>YingTing自我介紹</h1>
     </div>
     <div class="content">
         <div class="section" id="about">
@@ -156,25 +126,33 @@
                 學歷：<br>
                 - 高雄市海青工商職業學校 - 資訊科<br>
                 - 高雄科技大學(燕巢校區) - 智慧商務系 (目前就讀)<br><br>
-                工作經歷：<br>
-                曾在[公司名稱]擔任[職位]，負責[主要職責]，在此期間成功完成[主要成就]。
             </p>
         </div>
         <div class="section" id="skills">
             <h2>技能</h2>
-            <p>我擁有以下技能：<br>
+            <p>我學習過以下技能：<br>
                 - HTML, CSS, JavaScript<br>
-                - Web Design<br>
-                - Responsive Design<br>
-                - JavaScript Frameworks<br>
+                - php<br>
+                - Python, C++<br>
+                - Word, Excel, PowerPoint<br>
+            </p>
+        </div>
+        <div class="section" id="Certificate">
+            <h2>技能</h2>
+            <p>考過以下證照:<br>
+                - 數位電子-乙級<br>
+                - 工業電子-丙級<br>
+                - 電腦硬體裝修-丙級<br>
+                - 電腦軟體應用-丙級<br>
+                - AWS雲端從業人員認證
             </p>
         </div>
         <div class="section" id="contact">
             <h2>聯絡我</h2>
             <p>
                 如果您對我的工作感興趣，請隨時通過以下方式聯絡我：<br>
-                電子郵件：[你的電子郵件]<br>
-                電話：[你的電話號碼]<br>
+                電子郵件：C112156130@nkust.edu.tw<br>
+                電話：0967000000<br>
             </p>
         </div>
     </div>
