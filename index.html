@@ -5,105 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>個人簡介</title>
     <style>
-        body, html {
+        body {
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            position: fixed;
             width: 100%;
-            height: 100%;
-            overflow: hidden;
-            font-family: 'Arial', sans-serif;
-            background: #f0f0f0;
+            top: 0;
+            z-index: 1000;
         }
-        .container {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.5s ease-in-out;
+        .content {
+            padding: 100px 20px 20px 20px;
         }
-        .page {
-            width: 80%;
-            max-width: 800px;
-            background: white;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 20px 0;
-            border-radius: 10px;
+        .section {
+            margin: 50px 0;
         }
-        .page h1 {
-            margin-top: 0;
-            font-size: 2em;
+        .section h2 {
             color: #333;
         }
-        .page p {
-            font-size: 1.2em;
+        .section p {
             color: #666;
-            line-height: 1.6;
         }
-        .nav-buttons {
+        .floating-button {
             position: fixed;
             bottom: 20px;
-            display: flex;
-            justify-content: center;
-            width: 100%;
-        }
-        .nav-buttons button {
-            background: #333;
-            color: white;
+            right: 20px;
+            background-color: #333;
+            color: #fff;
             border: none;
             padding: 10px 20px;
-            margin: 0 10px;
             cursor: pointer;
             border-radius: 5px;
-            transition: background 0.3s;
-        }
-        .nav-buttons button:hover {
-            background: #555;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
 <body>
-    <div class="container" id="container">
-        <div class="page">
-            <h1>個人簡介</h1>
-            <p>你好，我是Yingting-992，一名熱愛程式設計的學生，專注於前端開發和用戶體驗設計。</p>
+    <div class="header">
+        <h1>個人簡介</h1>
+    </div>
+    <div class="content">
+        <div class="section">
+            <h2>關於我</h2>
+            <p>我是[你的名字]，一位專業的[你的職業]，擁有多年的經驗和豐富的技能。我專注於[你的專業領域]，並且對於[相關技能或技術]有深入的了解。</p>
         </div>
-        <div class="page">
-            <h1>技能</h1>
-            <p>精通HTML、CSS、JavaScript，熟悉React和Vue框架，擁有豐富的網頁開發經驗。</p>
+        <div class="section">
+            <h2>經歷</h2>
+            <p>我曾在[公司名稱]擔任[職位]，負責[主要職責]。在此期間，我成功地[主要成就]。</p>
         </div>
-        <div class="page">
-            <h1>聯絡方式</h1>
-            <p>電子郵件: C112156130@nkust.edu.tw</p>
+        <div class="section">
+            <h2>技能</h2>
+            <p>我擁有以下技能：<br>
+                - 技能1<br>
+                - 技能2<br>
+                - 技能3<br>
+                - 技能4<br>
+            </p>
+        </div>
+        <div class="section">
+            <h2>聯絡我</h2>
+            <p>如果您對我的工作感興趣，請隨時通過以下方式聯絡我：<br>
+                電子郵件：[你的電子郵件]<br>
+                電話：[你的電話號碼]<br>
+            </p>
         </div>
     </div>
-    <div class="nav-buttons">
-        <button onclick="prevPage()">上一頁</button>
-        <button onclick="nextPage()">下一頁</button>
-    </div>
+    <button class="floating-button" onclick="scrollToTop()">回到頂部</button>
     <script>
-        let currentPage = 0;
-        const container = document.getElementById('container');
-        const pages = document.querySelectorAll('.page');
-
-        function updatePage() {
-            container.style.transform = `translateY(-${currentPage * 100}vh)`;
-        }
-
-        function nextPage() {
-            if (currentPage < pages.length - 1) {
-                currentPage++;
-                updatePage();
-            }
-        }
-
-        function prevPage() {
-            if (currentPage > 0) {
-                currentPage--;
-                updatePage();
-            }
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>
