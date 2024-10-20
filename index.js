@@ -12,6 +12,7 @@ document.getElementById('calorieForm').addEventListener('submit', function(e) {
 
     // 更新畫面
     displayCalories(storedCalories);
+    renderCalorieChart(storedCalories);
 });
 
 function displayCalories(data) {
@@ -30,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     displayCalories(storedCalories);
 });
 
-//#####
+//#####maintainAspectRatio: false,// 不保持比例
 let myChart;
 function renderCalorieChart(data) {
     let labels = data.map(entry => entry.date);
@@ -55,7 +56,7 @@ function renderCalorieChart(data) {
                 }]
             },
             options: {// 選項
-                maintainAspectRatio: false,// 不保持比例
+                
                 responsive: true,// 自適應大小
                 scales: {
                     x: {
@@ -83,10 +84,3 @@ document.addEventListener('DOMContentLoaded', () => {
     let storedCalories = JSON.parse(localStorage.getItem('calorieData')) || [];
     renderCalorieChart(storedCalories);
 });
-// 假設有新的數據更新
-function updateChartWithNewData(newData) {
-    let storedCalories = JSON.parse(localStorage.getItem('calorieData')) || [];
-    storedCalories.push(newData); // 加入新數據
-    localStorage.setItem('calorieData', JSON.stringify(storedCalories));
-    renderCalorieChart(storedCalories); // 動態更新圖表
-}
