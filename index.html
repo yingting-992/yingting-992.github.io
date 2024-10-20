@@ -1,213 +1,23 @@
 <!DOCTYPE html>
-<html lang="zh-tw">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>自我介紹</title>
-    <style>
-        :root {
-            --main-bg-color: #2c3e50;
-            --primary-color: #ecf0f1;
-            --secondary-color: rgba(255, 255, 255, 0.1);
-            --accent-color: #8e44ad;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--main-bg-color);
-            background: linear-gradient(135deg, #2c3e50, #8e44ad);
-            background-size: 400% 400%;
-            animation: gradientAnimation 15s ease infinite;/*背景漸變動畫*/
-            color: var(--primary-color);
-        }
-
-        @keyframes gradientAnimation {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        .header {
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 20px 0;
-            text-align: center;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .header h1 {
-            font-size: 2.5em;
-            letter-spacing: 2px;
-            background: linear-gradient(90deg, #2980b9, #8e44ad);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            opacity: 0;
-            transform: translateY(-50px);
-            animation: textAppear 1.5s ease-out forwards;
-        }
-
-        @keyframes textAppear {
-            0% {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .content {
-            padding: 160px 20px 20px 20px;
-        }
-
-        .section {
-            margin: 50px 0;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .section:hover {
-            transform: scale(1.02);
-        }
-
-        .section h2 {
-            color: var(--primary-color);
-            font-size: 2em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            margin-bottom: 10px;
-        }
-
-        .section p {
-            color: var(--primary-color);
-            padding: 15px;
-            transition: background-color 0.3s;
-        }
-
-        .section p:hover {
-            background-color: var(--accent-color);
-        }
-
-        .profile-img {
-            width: 150px; /* 可根據需要調整大小 */
-            height: 150px; /* 確保圖片為正方形 */
-            border-radius: 50%; /* 圓形效果 */
-            display: block;
-            object-fit:cover; /*保持圖片原始比例，並完全填滿父元素*/
-            margin: 0 auto 15px; /* 自動居中，並在圖片下方添加一些間距 */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 添加陰影 */
-        }
-
-        .floating-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: var(--accent-color);
-            color: var(--primary-color);
-            border: none;
-            padding: 15px 30px;
-            cursor: pointer;
-            border-radius: 50px;
-            font-weight: bold;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        .floating-button:hover {
-            background-color: #9b59b6;
-            transform: scale(1.1);
-        }
-
-        .contact {
-            background-color: rgba(0, 0, 0, 0.6);
-            padding: 5px 15px;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .contact ul {
-            list-style-type: none;
-        }
-
-        .contact a {
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .contact a:hover {
-            color: #9b59b6;
-        }
-    </style>
+    <script type="module" src="./index.js"></script>
+    <link rel="stylesheet" href="./index.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>健康飲食</title>
 </head>
 <body>
-    <div class="header">
-        <h1>YingTing自我介紹</h1>
-    </div>
-    <div class="content">
-        <div class="section" id="about">
-            <h2>關於我</h2>
-            <img src="data:image/jpeg;base64,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" alt="YingTing的照片" class="profile-img">
-            <p>
-                我是YingTing，熱愛學習與挑戰，對技術和創意擁有無限熱情。
-            </p>
-        </div>
-        <div class="section" id="experience">
-            <h2>經歷</h2>
-            <p>
-                學歷：<br>
-                - 高雄市海青工商職業學校 - 資訊科<br>
-                - 高雄科技大學(燕巢校區) - 智慧商務系 (目前就讀)<br><br>
-            </p>
-        </div>
-        <div class="section" id="skills">
-            <h2>技能</h2>
-            <p>我學習過以下技能：<br>
-                - HTML, CSS, JavaScript<br>
-                - PHP<br>
-                - Python, C++<br>
-                - Word, Excel, PowerPoint<br>
-            </p>
-        </div>
-        <div class="section" id="Certificate">
-            <h2>證照</h2>
-            <p>考過以下證照:<br>
-                - 數位電子-乙級<br>
-                - 工業電子-丙級<br>
-                - 電腦硬體裝修-丙級<br>
-                - 電腦軟體應用-丙級<br>
-                - AWS雲端從業人員認證
-            </p>
-        </div>
-    </div>
-    <div class="contact" id="contact">
-        <p>
-            如果您對我的經歷感興趣，請隨時通過以下方式聯絡我：<br>
-            <ul>
-                <li>電子郵件：<a href="mailto:C112156130@nkust.edu.tw">C112156130@nkust.edu.tw</a></li>
-                <li>電話：<a href="tel:0967000000">0967000000</a></li>
-            </ul>
-        </p>
-    </div>
+    <form id="calorieForm">   <!-- 讓用戶輸入每日卡路里的表單 -->
+        <label for="calories">輸入今日卡路里攝取量:</label> 
+        <input type="number" id="calories" name="calories" required>
+        <button type="submit">提交</button>
+    </form>
+    <div id="calorieOutput"></div>  <!-- 顯示用戶輸入的卡路里 -->
+    
+    <canvas id="calorieChart" width="400" height="200"></canvas>
 
-    <button class="floating-button" onclick="scrollToTop()">回到頂部</button>
-    <script>
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    </script>
+      
 </body>
 </html>
