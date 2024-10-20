@@ -1,0 +1,8 @@
+*{
+    background-color: rgb(213, 253, 253);
+}
+#tChart{
+    width: 300px !important;
+    height: 150px !important;
+}
+  

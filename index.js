@@ -31,44 +31,51 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 //#####
-
+let myChart;
 function renderCalorieChart(data) {
     let labels = data.map(entry => entry.date);
     let calories = data.map(entry => entry.calories);
 
-    const ctx = document.getElementById('calorieChart').getContext('2d');// 獲取畫布
-    new Chart(ctx, {// 創建圖表
-        type: 'line',// 折線圖
-        data: {
-            labels: labels,  // 日期
-            datasets: [{
-                label: '每日卡路里攝取',
-                data: calories, // 卡路里數據
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 2,
-                fill: false // 不填充
-            }]
-        },
-        options: {// 選項
-            responsive: true,// 自適應大小
-            scales: {
-                x: {
-                    display: true, // 顯示x軸
-                    title: {
-                        display: true, // 顯示x軸標題
-                        text: '日期' // x軸標題
-                    }
-                },
-                y: {
-                    display: true,
-                    title: {
+    if (myChart) {
+        myChart.data.labels = labels;
+        myChart.data.datasets[0].data = calories;
+        myChart.update(); // 更新圖表而不重新創建
+    } else {
+        const ctx = document.getElementById('calorieChart').getContext('2d');// 獲取畫布
+        myChart = new Chart(ctx, {// 創建圖表
+            type: 'line',// 折線圖
+            data: {
+                labels: labels,  // 日期
+                datasets: [{
+                    label: '每日卡路里攝取',
+                    data: calories, // 卡路里數據
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2,
+                    fill: false // 不填充
+                }]
+            },
+            options: {// 選項
+                maintainAspectRatio: false,// 不保持比例
+                responsive: true,// 自適應大小
+                scales: {
+                    x: {
+                        display: true, // 顯示x軸
+                        title: {
+                            display: true, // 顯示x軸標題
+                            text: '日期' // x軸標題
+                        }
+                    },
+                    y: {
                         display: true,
-                        text: '卡路里'
+                        title: {
+                            display: true,
+                            text: '卡路里'
+                        }
                     }
                 }
             }
-        }
-    });
+        });
+    }
 }
 
 // 在頁面加載時或數據更新後渲染圖表
@@ -76,3 +83,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let storedCalories = JSON.parse(localStorage.getItem('calorieData')) || [];
     renderCalorieChart(storedCalories);
 });
+// 假設有新的數據更新
+function updateChartWithNewData(newData) {
+    let storedCalories = JSON.parse(localStorage.getItem('calorieData')) || [];
+    storedCalories.push(newData); // 加入新數據
+    localStorage.setItem('calorieData', JSON.stringify(storedCalories));
+    renderCalorieChart(storedCalories); // 動態更新圖表
+}
