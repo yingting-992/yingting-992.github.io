@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     displayCalories(storedCalories);
 });
 
-//#####maintainAspectRatio: false,// 不保持比例
+//#####// 不保持比例
 let myChart;
 function renderCalorieChart(data) {
     let labels = data.map(entry => entry.date);
@@ -56,7 +56,7 @@ function renderCalorieChart(data) {
                 }]
             },
             options: {// 選項
-                
+                maintainAspectRatio: false,
                 responsive: true,// 自適應大小
                 scales: {
                     x: {
