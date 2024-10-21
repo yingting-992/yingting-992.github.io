@@ -1,3 +1,21 @@
+//回到頂部
+document.addEventListener('scroll', function() {
+    const floatingTexts = document.querySelectorAll('.floating-text');
+    const scrollPosition = window.scrollY;
+
+    floatingTexts.forEach(text => {
+        if (scrollPosition > 100) {
+            text.style.transform = 'translateY(-10px)';
+        } else {
+            text.style.transform = 'translateY(0)';
+        }
+    });
+});
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 // 當表單提交時執行
 document.getElementById('calorieForm').addEventListener('submit', function(e) {
     e.preventDefault();// 阻止表單默認提交
@@ -101,3 +119,5 @@ document.addEventListener('DOMContentLoaded', () => { // 當頁面加載時
     storedCalories =[];
     renderCalorieChart(storedCalories);
 });
+
+

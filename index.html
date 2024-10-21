@@ -9,21 +9,36 @@
     <title>健康飲食</title>
 </head>
 <body>
-    <form id="calorieForm">   <!-- 讓用戶輸入每日卡路里的表單 -->
+    <header>
+        <h1><img src="./LOGO.png" alt="" srcset=""></h1>
+        <nav>
+            <ul>
+                <li><a href="#">首頁</a></li>
+                <li><a href="#">飲食</a></li>
+                <li><a href="#">運動</a></li>
+                <li><a href="#">BMI</a></li>
+                <li><a href="#">關於我們</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <!-- 讓用戶輸入每日卡路里的表單 -->
+    <form id="calorieForm">   
         <label for="calories">輸入今日卡路里攝取量:</label> 
         <input type="number" id="calories" name="calories" required>
         <button type="submit">提交</button>
-        
-        
     </form>
     <div id="calorieOutput"></div>  <!-- 顯示用戶輸入的卡路里 -->
 
+   <!-- 顯示圖表 -->
     <div id="tChart">
         <canvas id="calorieChart"></canvas>    
     </div>
     <button id="clearData">Clear</button>
     
-
-      
+    <!-- 回到頂部按鈕 -->
+    <button class="floating-button" onclick="scrollToTop()">回到頂部</button>
+    <script src="./index.js"></script>
 </body>
 </html>
