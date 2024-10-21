@@ -45,11 +45,7 @@ function displayCalories(data) {
     document.getElementById('calorieOutput').innerHTML = output;
 }
 
-// 頁面加載時顯示已存數據
-document.addEventListener('DOMContentLoaded', () => {
-    let storedCalories = JSON.parse(localStorage.getItem('calorieData')) || [];
-    displayCalories(storedCalories);
-});
+
 
 //#####
 let myChart;
