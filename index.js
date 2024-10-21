@@ -102,6 +102,6 @@ function renderCalorieChart(data) {
 // 在頁面加載時或數據更新後渲染圖表
 document.addEventListener('DOMContentLoaded', () => { // 當頁面加載時
     let storedCalories = JSON.parse(localStorage.getItem('calorieData')) || [];
-    //storedCalories =[];
+    storedCalories =[];
     renderCalorieChart(storedCalories);
 });
