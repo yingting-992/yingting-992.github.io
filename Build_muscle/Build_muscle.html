@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Build_muscle.css">
+    <title>運動增肌</title>
+</head>
+<body>
+    <!-- 讓用戶輸入每日卡路里的表單 -->
+    <form id="calorieForm">   
+        <label for="calories">輸入今日卡路里攝取量:</label> 
+        <input type="number" id="calories" name="calories" required>
+        <button type="submit">提交</button>
+    </form>
+    <div id="calorieOutput"></div>  <!-- 顯示用戶輸入的卡路里 -->
+
+   <!-- 顯示圖表 -->
+    <div id="tChart">
+        <canvas id="calorieChart"></canvas>    
+    </div>
+    <button id="clearData">Clear</button>
+</body>
+</html>

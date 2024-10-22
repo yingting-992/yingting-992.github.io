@@ -3,26 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="module" src="./index.js"></script>
-    <link rel="stylesheet" href="./index.css">
+    <script type="module" src="../index.js"></script>
+    <link rel="stylesheet" href="./calculate.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <title>健康飲食</title>
+    <title>計算健康</title>
 </head>
 <body>
-    <header>
-        <h1><img src="./LOGO.png" alt="" srcset=""></h1>
-        <nav>
-            <ul>
-                <li><a href="#">首頁</a></li>
-                <li><a href="#">飲食</a></li>
-                <li><a href="#">運動</a></li>
-                <li><a href="#">BMI</a></li>
-                <li><a href="#">關於我們</a></li>
-            </ul>
-        </nav>
-
-    </header>
-
     <!-- 讓用戶輸入每日卡路里的表單 -->
     <form id="calorieForm">   
         <label for="calories">輸入今日卡路里攝取量:</label> 
@@ -36,9 +22,9 @@
         <canvas id="calorieChart"></canvas>    
     </div>
     <button id="clearData">Clear</button>
-    
+
     <!-- 回到頂部按鈕 -->
     <button class="floating-button" onclick="scrollToTop()">回到頂部</button>
-    <script src="./index.js"></script>
+    <script src="../index.js"></script>
 </body>
 </html>

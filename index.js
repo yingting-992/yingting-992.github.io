@@ -21,13 +21,13 @@ document.getElementById('calorieForm').addEventListener('submit', function(e) {
     e.preventDefault();// 阻止表單默認提交
     
     // 獲取用戶輸入的卡路里數據
-    let calories = document.getElementById('calories').value;
+    let calories = parseFloat(document.getElementById('calories').value);
 
     // 簡單存儲到localStorage (可改為發送至後端API)
     let storedCalories = JSON.parse(localStorage.getItem('calorieData')) || [];
     storedCalories.push({ date: new Date().toLocaleDateString(), calories: calories });
     localStorage.setItem('calorieData', JSON.stringify(storedCalories));
-    document.getElementById('calories').value = null;
+    //document.getElementById('calories').value = null;
     // 更新畫面
     displayCalories(storedCalories);
     renderCalorieChart(storedCalories);// 更新圖表
@@ -63,7 +63,11 @@ function displayCalories(data) {
     document.getElementById('calorieOutput').innerHTML = output;
 }
 
-
+// 當頁面加載時或數據更新後渲染圖表
+document.addEventListener('DOMContentLoaded', () => { 
+    let storedCalories = JSON.parse(localStorage.getItem('calorieData')) || [];
+    renderCalorieChart(storedCalories); // 正確渲染初始圖表
+});
 
 //#####
 let myChart;
@@ -113,11 +117,12 @@ function renderCalorieChart(data) {
     }
 }
 
-// 在頁面加載時或數據更新後渲染圖表
-document.addEventListener('DOMContentLoaded', () => { // 當頁面加載時
-    let storedCalories = JSON.parse(localStorage.getItem('calorieData')) || [];
-    storedCalories =[];
-    renderCalorieChart(storedCalories);
-});
+// // 在頁面加載時或數據更新後渲染圖表
+// document.addEventListener('DOMContentLoaded', () => { // 當頁面加載時
+//     let storedCalories = JSON.parse(localStorage.getItem('calorieData')) || [];
+//     storedCalories =[];
+//     //displayCalories(storedCalories);
+//     renderCalorieChart(storedCalories);
+// });
 
 
