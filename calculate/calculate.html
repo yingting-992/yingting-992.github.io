@@ -3,12 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="module" src="../index.js"></script>
+    <!-- <script type="module" src="../index.js"></script> -->
+    <script type="module" src="./cal1.js"></script>
+    <script type="module" src="./cal2.js"></script>
+    <script type="module" src="./script.js"></script>
     <link rel="stylesheet" href="./calculate.css">
+    <!-- <script type="module" src="./cal2.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>計算健康</title>
 </head>
 <body>
+    <section>
+        <h2>基本資料</h2>
+        <form id="bmiForm">
+            <label for="height">性別:</label>
+            <input type="radio"  id="male">男
+            <input type="radio"  id="female">女<br>
+            <label for="age">年齡:</label>
+            <input type="number" id="age" name="age" required> <br>
+            <label for="height">身高 (cm):</label>
+            <input type="number" id="height" name="height" required> <br>
+            <label for="weight">體重 (kg):</label>
+            <input type="number" id="weight" name="weight" required> <br>
+            <button type="submit">計算</button>
+        </form>
+        <div id="bmiOutput"></div>
+    </section>
+
+    <section>
     <!-- 讓用戶輸入每日卡路里的表單 -->
     <form id="calorieForm">   
         <label for="calories">輸入今日卡路里攝取量:</label> 
@@ -22,9 +44,57 @@
         <canvas id="calorieChart"></canvas>    
     </div>
     <button id="clearData">Clear</button>
+    
+</section>
+
+
+<!-- <section>
+    <h2>Survey Data</h2>
+    <select id="userSelect"></select>
+    <div id="userInfo"></div>
+    <button id="clearData">清除資料</button>
+</section> -->
+
+      
+<!-- <h1>Survey Data</h1>
+<select id="userSelect"></select>
+<div id="userInfo"></div>
+  
+<script>
+    // 讀取 JSON 資料
+    fetch('./data.json')
+        .then(response => response.json())
+        .then(data => {
+            const userSelect = document.getElementById('userSelect');
+            const userInfo = document.getElementById('userInfo');
+
+            data.forEach(user => {
+                const option = document.createElement('option');
+                option.value = user.name; // 根據 CSV 檔中的相應字段
+                option.textContent = user.name;
+                userSelect.appendChild(option);
+            });
+
+            userSelect.addEventListener('change', function() {
+                const selectedUser = data.find(user => user.name === this.value);
+                if (selectedUser) {
+                    userInfo.innerHTML = `
+                        <p>Name: ${selectedUser.name}</p>
+                        <p>Age: ${selectedUser.age}</p>
+                        <p>Gender: ${selectedUser.gender}</p>
+                        <p>Height: ${selectedUser.height}</p>
+                        <p>Weight: ${selectedUser.weight}</p>
+                    `;
+                } else {
+                    userInfo.innerHTML = '';
+                }
+            });
+        })
+        .catch(error => console.error('Error:', error));
+</script> -->
 
     <!-- 回到頂部按鈕 -->
     <button class="floating-button" onclick="scrollToTop()">回到頂部</button>
-    <script src="../index.js"></script>
+    <script src="./cal1.js"></script>
 </body>
 </html>
