@@ -74,7 +74,7 @@ img{
     .linkList::before{
         content: '';
         width: 47%;
-        background : url(../圖片/logo2.png) no-repeat center center/72%;
+        background : url("../圖片/logo2.png") no-repeat center center/72%;
         /* 第一個 center：代表水平位置居中。
            第二個 center：代表垂直位置居中。 */
         /*cover表示背景圖片會自動調整大小以完全覆蓋整個元素背景，不管圖片的原始大小如何。*/
