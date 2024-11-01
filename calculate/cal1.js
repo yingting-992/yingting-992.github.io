@@ -12,10 +12,13 @@ document.addEventListener('scroll', function() {
     });
 });
 
+
 function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+
+// 計算基礎代謝率
 // 當表單提交時執行
 document.getElementById('calorieForm').addEventListener('submit', function(e) {
     e.preventDefault();// 阻止表單默認提交
@@ -120,13 +123,5 @@ function renderCalorieChart(data) {
         });
     }
 }
-
-// // 在頁面加載時或數據更新後渲染圖表
-// document.addEventListener('DOMContentLoaded', () => { // 當頁面加載時
-//     let storedCalories = JSON.parse(localStorage.getItem('calorieData')) || [];
-//     storedCalories =[];
-//     //displayCalories(storedCalories);
-//     renderCalorieChart(storedCalories);
-// });
 
 
