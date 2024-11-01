@@ -1,7 +1,6 @@
 {
   "name": "testhtml",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,8 +11,10 @@
   "dependencies": {
     "csv-parser": "^3.0.0",
     "csvtojson": "^2.0.10",
+    "firebase": "^11.0.1",
     "fs": "^0.0.1-security",
     "googleapis": "^144.0.0",
     "json2csv": "^6.0.0-alpha.2"
-  }
+  },
+  "description": ""
 }

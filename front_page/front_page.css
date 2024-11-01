@@ -14,6 +14,7 @@ img{
     max-width: 100%; /*最大寬度為100%*，width:100%會強制把小的圖片也擴大*/
     height: auto;
 }
+
 .topPage header{
     height: 90vh;
     background: url(../圖片/主頁背景.jpg)no-repeat center top/cover;

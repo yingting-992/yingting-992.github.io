@@ -3,98 +3,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <script type="module" src="../index.js"></script> -->
-    <script type="module" src="./cal1.js"></script>
-    <script type="module" src="./cal2.js"></script>
-    <script type="module" src="./script.js"></script>
-    <link rel="stylesheet" href="./calculate.css">
-    <!-- <script type="module" src="./cal2.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>計算健康</title>
+    <link rel="stylesheet" href="./calculate.css">
+    <script type="module" src="./cal1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <section>
         <h2>基本資料</h2>
         <form id="bmiForm">
-            <label for="height">性別:</label>
-            <input type="radio"  id="male">男
-            <input type="radio"  id="female">女<br>
-            <label for="age">年齡:</label>
+            <label for="name">姓名:</label>
+            <input type="text" id="name" name="name" required><br>
+            <label for="stdnumber">學號:</label>
+            <input type="text" id="stdnumber" name="stdnumber" required><br>
+            <label for="height" id="lab">性別:</label>
+            <input type="radio" id="male" name="gender" value="male">男
+            <input type="radio" id="female" name="gender" value="female">女<br>
+            <label for="age" id="lab">年齡:</label>
             <input type="number" id="age" name="age" required> <br>
-            <label for="height">身高 (cm):</label>
+            <label for="height" id="lab">身高 (cm):</label>
             <input type="number" id="height" name="height" required> <br>
-            <label for="weight">體重 (kg):</label>
+            <label for="weight" id="lab">體重 (kg):</label>
             <input type="number" id="weight" name="weight" required> <br>
             <button type="submit">計算</button>
         </form>
         <div id="bmiOutput"></div>
+        <hr>
+        <button id="Insbtn">INSERT</button>
+        <button id="Selbtn">SELECT</button>
+        <button id="Updbtn">UPDATE</button>
+        <button id="Delbtn">DELETE</button>
     </section>
 
     <section>
-    <!-- 讓用戶輸入每日卡路里的表單 -->
-    <form id="calorieForm">   
-        <label for="calories">輸入今日卡路里攝取量:</label> 
-        <input type="number" id="calories" name="calories" required>
-        <button type="submit">提交</button>
-    </form>
-    <div id="calorieOutput"></div>  <!-- 顯示用戶輸入的卡路里 -->
-
-   <!-- 顯示圖表 -->
-    <div id="tChart">
-        <canvas id="calorieChart"></canvas>    
-    </div>
-    <button id="clearData">Clear</button>
+        <!-- 讓用戶輸入每日卡路里的表單 -->
+        <form id="calorieForm">   
+            <label for="calories">輸入今日卡路里攝取量:</label> 
+            <input type="number" id="calories" name="calories" required>
+            <button type="submit">提交</button>
+        </form>
+        <div id="calorieOutput"></div>  <!-- 顯示用戶輸入的卡路里 -->
     
-</section>
+       <!-- 顯示圖表 -->
+        <div id="tChart">
+            <canvas id="calorieChart"></canvas>    
+        </div>
+        <button id="clearData">Clear</button>
+        
+    </section>
 
+    <script type="module">
+        // Firebase SDK 初始化
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
+        import { getDatabase, ref, set, get, child, update, remove } 
+        from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
 
-<!-- <section>
-    <h2>Survey Data</h2>
-    <select id="userSelect"></select>
-    <div id="userInfo"></div>
-    <button id="clearData">清除資料</button>
-</section> -->
+        const firebaseConfig = {
+        apiKey: "AIzaSyDzZVKeHHLGIdgrYz7Np3XHEPsk7FbhLIE",
+        authDomain: "healthy-food-938d3.firebaseapp.com",
+        databaseURL: "https://healthy-food-938d3-default-rtdb.firebaseio.com",
+        projectId: "healthy-food-938d3",
+        storageBucket: "healthy-food-938d3.appspot.com",
+        messagingSenderId: "88881865492",
+        appId: "1:88881865492:web:0957c85928202e9c8d9801",
+        measurementId: "G-YJ7VXRSBK8"
+        };
 
-      
-<!-- <h1>Survey Data</h1>
-<select id="userSelect"></select>
-<div id="userInfo"></div>
-  
-<script>
-    // 讀取 JSON 資料
-    fetch('./data.json')
-        .then(response => response.json())
-        .then(data => {
-            const userSelect = document.getElementById('userSelect');
-            const userInfo = document.getElementById('userInfo');
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getDatabase(app);
 
-            data.forEach(user => {
-                const option = document.createElement('option');
-                option.value = user.name; // 根據 CSV 檔中的相應字段
-                option.textContent = user.name;
-                userSelect.appendChild(option);
+        // 參考變數
+        const bmiForm = document.getElementById("bmiForm");
+        const calorieForm = document.getElementById("calorieForm");
+        const bmiOutput = document.getElementById("bmiOutput");
+        const calorieOutput = document.getElementById("calorieOutput");
+        const insBtn = document.getElementById("Insbtn");
+        const selBtn = document.getElementById("Selbtn");
+        const updBtn = document.getElementById("Updbtn");
+        const delBtn = document.getElementById("Delbtn");
+        const clearDataBtn = document.getElementById("clearData");
+
+        // BMI 計算和顯示
+        bmiForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const height = parseFloat(document.getElementById("height").value);
+            const weight = parseFloat(document.getElementById("weight").value);
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const age = parseInt(document.getElementById("age").value);
+
+            const bmi = (weight / ((height / 100) ** 2)).toFixed(2);
+            bmiOutput.innerText = `你的 BMI 是: ${bmi}`;
+            
+            // 可以在此處將 BMI 和其他基本信息保存到 Firebase
+        });
+
+        // 插入資料功能
+        function insertData(){
+            const name = document.getElementById("name").value;
+            const stdnumber = document.getElementById("stdnumber").value;
+            const gender = document.querySelector('input[name="gender"]:checked')?.value; // 獲取選中的性別
+            const age = document.getElementById("age").value;
+            const height = document.getElementById("height").value;
+            const weight = document.getElementById("weight").value;
+            
+            set(ref(db, 'Users/' + stdnumber), {
+                Name: name,
+                stdnumber: stdnumber,
+                Gender: gender,
+                Age: age,
+                Height: height,
+                Weight: weight
+            })
+            .then(() => {
+                alert("Data Inserted Successfully");
+            })
+            .catch((error) => {
+                alert("Data Insertion Failed: " + error);
             });
+        }
+        // 選擇資料功能
+        function selectData(){
+            const stdnumber = document.getElementById("stdnumber").value; // 確保讀取學號
 
-            userSelect.addEventListener('change', function() {
-                const selectedUser = data.find(user => user.name === this.value);
-                if (selectedUser) {
-                    userInfo.innerHTML = `
-                        <p>Name: ${selectedUser.name}</p>
-                        <p>Age: ${selectedUser.age}</p>
-                        <p>Gender: ${selectedUser.gender}</p>
-                        <p>Height: ${selectedUser.height}</p>
-                        <p>Weight: ${selectedUser.weight}</p>
-                    `;
+            if (!stdnumber) {
+                alert("Please enter a valid student number.");
+                return;
+            }
+            const dbRef = ref(db);
+            get(child(dbRef, 'Users/' + stdnumber)).then((snapshot) => {
+                if (snapshot.exists()) {
+                    document.getElementById("name").value = snapshot.val().Name;
+                    document.getElementById("stdnumber").value = snapshot.val().stdnumber;
+                    document.querySelector(`input[name="gender"][value="${snapshot.val().Gender}"]`).checked = true;
+                    document.getElementById("age").value = snapshot.val().Age;
+                    document.getElementById("height").value = snapshot.val().Height;
+                    document.getElementById("weight").value = snapshot.val().Weight;
                 } else {
-                    userInfo.innerHTML = '';
+                    alert("No data found");
                 }
+            })
+            .catch((error) => {
+                alert("Data Selection Failed: " + error);
             });
-        })
-        .catch(error => console.error('Error:', error));
-</script> -->
+        }
+        // 更新資料功能
+        function updateData(){
+            const name = document.getElementById("name").value;
+            const stdnumber = document.getElementById("stdnumber").value;
+            const gender = document.querySelector('input[name="gender"]:checked').value; // 獲取選中的性別
+            const age = document.getElementById("age").value;
+            const height = document.getElementById("height").value;
+            const weight = document.getElementById("weight").value;
+            update(ref(db, 'Users/' + stdnumber), {
+                Name: name,
+                Gender: gender,
+                Age: age,
+                Height: height,
+                Weight: weight
+            })
+            .then(() => {
+                alert("Data update Successfully");
+            })
+            .catch((error) => {
+                alert("Data update Failed: " + error);
+            });
+        }
+        // 刪除資料功能
+        function deleteData(){
+            const stdnumber = document.getElementById("stdnumber").value; // 確保獲取的是學號的值
+            if (!stdnumber) {
+                alert("Please enter a valid student number.");
+                return;
+            }
+            remove(ref(db, 'Users/' + stdnumber))
+            .then(() => {
+                alert("Data Deleted Successfully");
+            })
+            .catch((error) => {
+                alert("Data Deletion Failed: " + error);
+            });
+        }
+        // 事件綁定
+        insBtn.addEventListener("click", insertData);
+        selBtn.addEventListener("click", selectData);
+        updBtn.addEventListener("click", updateData);
+        delBtn.addEventListener("click", deleteData);
 
-    <!-- 回到頂部按鈕 -->
-    <button class="floating-button" onclick="scrollToTop()">回到頂部</button>
-    <script src="./cal1.js"></script>
+        // 清除數據
+        clearDataBtn.addEventListener("click", () => {
+            // 清除相關數據和圖表
+        });
+    </script>
 </body>
 </html>
