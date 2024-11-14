@@ -19,7 +19,7 @@
     }
 }
 
-.container h1, main h2, #business_cards { 
+.container h1, main h2 { 
     animation: fadeIn 1s ease forwards; /* 動畫名稱 時間 函數 保持最後狀態 */
 }
 
@@ -40,8 +40,6 @@
     }
 }
 
-
-
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -60,17 +58,22 @@
     font-weight: 500;
     text-align: center;
 }
-.container a span {
+.container span {
     display: block;
     text-align: center;
+    line-height: 1.6;
     color: #0e4d2d;
 }
-body {
+/* body {
     font-family: 'Catamaran', sans-serif;
     font-size: 16px;
     line-height: 1.5;
     color: #333333;
-    background-color: #f0f0f0; /* 背景色 */
+    background-color: #f0f0f0;
+} */
+body {
+    background-color: #f8f9fa; /* 更明亮的背景 */
+    color: #333; /* 深色的字體顏色 */
 }
 
         
@@ -84,23 +87,52 @@ body {
     color: #ffffff;          
 }
         
-header h1 {
-    background-color: #004d40; /* 深綠色主色 */
+.header h1 {
     margin: 0;
     font-size: 2.5em;
 }
 main {
-    margin: 20px; /* 外距，讓 `main` 與螢幕邊緣有間距 */
+    margin: 0px 60px 20px 60px; /* 外距，讓 `main` 與螢幕邊緣有間距 */
     padding: 20px; /* 內距，讓 `main` 內的內容不緊貼邊框 */
 }
-.database {
-    flex: 1; /* 佔據 50% 的寬度 */
-    max-width: 50%; /* 限制寬度為畫面的 50% */
+.lab input[type="radio"] {
+    color: #004d40; /* 深綠色主色 */
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+
+/* 基本資料 */
+#bmiForm {
     display: block;
+    flex: 1; /* 佔據 50% 的寬度 */
+    background-color: transparent;
+    padding: 0px;
+    margin: 0 ;
     width: 100%;
-    padding: 40px;
-    margin: 0px 0;
+    max-width: 300px; /* 設定表單最大寬度，避免在桌面上過大 */
+}
+#bmiForm label {
+    display: flex;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+#bmiForm input[type="text"],
+#bmiForm input[type="number"] {
+    width: 100%; /* 寬度設為 100% */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#dataoutput {
+    display: block;
+    flex: 1; /* 佔據 50% 的寬度 */
     background-color: #ffffff;
+    padding: 40px 20px;
+    margin: 20px auto;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     animation: fadeIn 1s ease forwards;
@@ -110,3 +142,256 @@ main {
 
 }
 
+/* bmi輸出 */
+#bmiFeedback {
+    color: #004d40; /* 深綠色主色 */
+    border-bottom: 2px solid #004d40;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* 體脂率計算結果 */
+#bodyFatOutput {
+    /* color: #004d40; 深綠色主色 */
+    border-bottom: 2px solid #004d40;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* 基礎代謝率計算結果 */
+#bmrOutput {
+    /* color: #004d40; 深綠色主色 */
+    border-bottom: 2px solid #004d40;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.activity-mode-section {
+    display: block;
+    flex: 1; /* 佔據 50% 的寬度 */
+    background-color: #ffffff;
+    padding: 40px 20px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease forwards;
+    margin: 20px 0;
+    
+    
+}
+.activity-mode-section h2{
+    color: #004d40; /* 深綠色主色 */
+    border-bottom: 2px solid #004d40;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-size: cover;
+}
+.activity-mode-section p{
+    color: #004d40; /* 深綠色主色 */
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-size: cover;
+}
+
+.divider{
+    display: block;
+    align-items: center;
+    border-bottom: 2px solid #004d40;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+
+/* footer {
+    background-color: #004d40; 深綠色主色
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    margin: 0;
+    font-size: 1em;
+} */
+#calorieForm {
+    display: block;
+    flex: 1; /* 佔據 50% 的寬度 */
+    background-color: transparent;
+    margin-left: 200px ;
+    width: 100%;
+    max-width: 300px; /* 設定表單最大寬度，避免在桌面上過大 */
+}
+#calorieForm button {
+    background-color: #0e4d2d;
+    color: white;
+    padding: 10px 20px 10px 20px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+button:hover {
+    transform: scale(1.05);
+    background-color: #089b58;
+}
+
+footer{
+    background-color: #004d40; /* 深綠色主色 */
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 0;
+}
+
+
+
+
+
+#goTop {
+    position: fixed;
+    right: 200px;
+    bottom: 70px;
+    display: none;
+    width: 90px;  
+    height: 90px;
+    background-color: #098245;
+    color: white;
+    border: none;
+    text-align: center;
+    line-height: 90px;
+    text-decoration: none;
+    border-radius: 50%; 
+    font-size: 40px;
+    z-index: 1000;
+}
+
+#goTop:hover {
+    background-color: #089b58;
+} 
+
+
+
+/* 網頁版 */
+@media screen and (min-width: 600px) {
+    #goTop {
+        right: 200px;
+        width: 90px;
+        height: 90px;
+    }
+    
+    #business_card img {
+        width: 100%;
+    }
+}
+
+/* 手機版 */
+@media screen and (max-width: 600px) {
+    #goTop {
+        right: 30px;  /* 讓按鈕距離右邊更近 */
+        bottom: 50px; /* 讓按鈕距離底部更近 */
+        width: 60px;  /* 按鈕縮小尺寸 */
+        height: 60px;
+        line-height: 60px;
+        font-size: 30px;
+    }
+    
+    #business_card img {
+        width: 90%;   /* 縮小圖片寬度 */
+        margin: 0 auto; /* 居中圖片 */
+    }
+}
+
+
+
+
+
+
+.tooltip {
+    display: none; /* 初始狀態為隱藏 */
+    position: absolute;
+    background-color: #ffffff;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 200px; /* 提示框寬度 */
+    max-width: 200px; /* 最大宽度 */
+    border-radius: 5px; /* 圆角 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 阴影 */
+}
+
+.tooltip h4 {
+    font-weight: bold; /* 標題加粗 */
+    margin: 0 0 5px; /* 標題下方的間距 */
+}
+
+/* 電腦版響應式 */
+@media screen and (min-width: 920px){ 
+    .topPage{
+        display: flex;
+    }
+    .topPage header{
+        flex-basis: 38%;/* 用% 較彈性 */
+    }
+    .topPage main{
+        flex-basis: 62%;
+    }
+    
+    .database {
+    flex: 1; /* 佔據 50% 的寬度 */
+    max-width: 50%; /* 限制寬度為畫面的 50% */
+    display: block;
+    width: 100%;
+    padding: 40px 20px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease forwards;
+    margin: 20px 0;
+    border-style:ridge;
+    border-bottom: 20px solid #bed2c8;
+    } 
+    
+   #dataoutput{
+        position: absolute; /* 固定位置 */
+        right: 200px; /* 將元素對齊到右側 */
+        top: 220px; /* 將元素頂部對齊 */
+        width: 30%; /* 設置寬度 */
+    }
+
+    .image-section  img{
+        display: flex;
+        width: 100; /* 設置寬度 */
+        border-radius: 30%;
+        box-shadow: 0 4px 10px rgba(0, 0.3, 0.6, 0.1);
+    }
+    .image-section2  img{
+        display: flex;
+        width: 100; /* 設置寬度 */
+        border-radius: 30%;
+        box-shadow: 0 4px 10px rgba(0, 0.3, 0.6, 0.1);
+    }
+    #calorieForm {
+        display: block;
+        flex: 1; /* 佔據 50% 的寬度 */
+        background-color: transparent;
+        margin-left: 400px ;
+        width: 100%;
+        max-width: 300px; /* 設定表單最大寬度，避免在桌面上過大 */
+    }
+    #calorieForm button {
+        background-color: #0e4d2d;
+        color: white;
+        padding: 10px 20px 10px 20px;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s;
+    }
+}
