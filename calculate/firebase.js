@@ -1,8 +1,9 @@
-// Firebase SDK 初始化
+﻿// Firebase SDK 初始化
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
 import { getDatabase, ref, set, get, child, update, remove } 
 from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyDzZVKeHHLGIdgrYz7Np3XHEPsk7FbhLIE",
@@ -86,42 +87,42 @@ function calculate() {
   const age = parseInt(document.getElementById("age").value);
   const height = parseFloat(document.getElementById("height").value);
   const weight = parseFloat(document.getElementById("weight").value);
-// BMI 計算
-const bmi = (weight / ((height / 100) ** 2)).toFixed(2);
-document.getElementById("bmiOutput").innerText = `你的 BMI 是: ${bmi}`;
-let feedbacktext = "";
-if (bmi < 18.5) {
-  feedbacktext = ("喔喔~ 你的 BMI 過低");
-} else if (bmi >= 18.5 && bmi < 24) {
-  feedbacktext = ("恭喜你! 你的 BMI 正常");
-}
-else if (bmi >= 24 && bmi < 27) {
-  feedbacktext = ("哎呀呀 你的 BMI 過重啦!");
-}
-else if (bmi >= 27){
-  feedbacktext = ("注意檢康喔! 你的 BMI 肥胖");
-}
-BMI = bmi;
-document.getElementById("bmiFeedback").innerText = feedbacktext;
-// 體脂率計算
-let bodyFat;
-if (gender === "male") {
-    bodyFat = (1.20 * bmi + 0.23 * age - 16.2).toFixed(2);
-} else {
-    bodyFat = (1.20 * bmi + 0.23 * age - 5.4).toFixed(2);
-}
-BODYFAT = bodyFat;
-document.getElementById("bodyFatOutput").innerText = `你的體脂率是: ${bodyFat}%`;
+  // BMI 計算
+  const bmi = (weight / ((height / 100) ** 2)).toFixed(2);
+  document.getElementById("bmiOutput").innerText = `你的 BMI 是: ${bmi}`;
+  let feedbacktext = "";
+  if (bmi < 18.5) {
+    feedbacktext = ("喔喔~ 你的 BMI 過低");
+  } else if (bmi >= 18.5 && bmi < 24) {
+    feedbacktext = ("恭喜你! 你的 BMI 正常");
+  }
+  else if (bmi >= 24 && bmi < 27) {
+    feedbacktext = ("哎呀呀 你的 BMI 過重啦!");
+  }
+  else if (bmi >= 27){
+    feedbacktext = ("注意檢康喔! 你的 BMI 肥胖");
+  }
+  BMI = bmi;
+  document.getElementById("bmiFeedback").innerText = feedbacktext;
+  // 體脂率計算
+  let bodyFat;
+  if (gender === "male") {
+      bodyFat = (1.20 * bmi + 0.23 * age - 16.2).toFixed(2);
+  } else {
+      bodyFat = (1.20 * bmi + 0.23 * age - 5.4).toFixed(2);
+  }
+  BODYFAT = bodyFat;
+  document.getElementById("bodyFatOutput").innerText = `你的體脂率是: ${bodyFat}%`;
 
-// 基礎代謝率計算 (BMR)
-let bmr;
-if (gender === "male") {
-    bmr = (88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)).toFixed(2);
-} else {
-    bmr = (447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age)).toFixed(2);
-}
-BMR = bmr;
-document.getElementById("bmrOutput").innerText = `你的基礎代謝率是: ${bmr} 大卡`;
+  // 基礎代謝率計算 (BMR)
+  let bmr;
+  if (gender === "male") {
+      bmr = (88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)).toFixed(2);
+  } else {
+      bmr = (447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age)).toFixed(2);
+  }
+  BMR = bmr;
+  document.getElementById("bmrOutput").innerText = `你的基礎代謝率是: ${bmr} 大卡`;
 
 }
  
@@ -163,7 +164,7 @@ function calculateActivityBMR() {
   var modeValue=getMode(); 
   //alert("Activity Level:" + levelValue + ",Mode:" + modeValue);
   var TDEE = 0 ;//每日總熱量消耗 (TDEE)
-  TDEE = (BMR * levelValue) + modeValue;
+  TDEE = ((BMR * levelValue) + modeValue);                       // Math.round 四捨五入
   let activityBmrOutput = document.getElementById("activityBmrOutput");
   activityBmrOutput.innerText = `你的每日總熱量消耗 (TDEE) 是: ${TDEE} 大卡`;
 }
@@ -175,7 +176,7 @@ function getMode() {
   var i=0;
   for (i = 0; i < ele.length; i++) {
       if (ele[i].checked)
-        modeValue=ele[i].value ;
+        modeValue=parseInt(ele[i].value) ;
   }
   return modeValue;
 }
@@ -343,6 +344,7 @@ function scrollToTop() {
 function weight() {
 
 }
+
 document.getElementById('calorieForm').addEventListener('submit', function(e) {
   e.preventDefault();// 阻止表單默認提交
   
@@ -394,6 +396,24 @@ function displayCalories(data) {
 document.addEventListener('DOMContentLoaded', () => { 
   let storedCalories = JSON.parse(localStorage.getItem('calorieData')) || [];
   renderCalorieChart(storedCalories); // 正確渲染初始圖表
+
+
+  const hamburgerMenu = document.getElementById("hamburgerMenu");
+  const navbar = document.getElementById("navbar");
+ 
+
+  // 點擊漢堡菜單後展開導航欄
+  hamburgerMenu.addEventListener("click", () => {
+      navbar.classList.toggle("show"); // 切换展开效果
+  });
+
+  // 点击菜单项后收起导航栏（可选功能）
+  navbar.addEventListener("click", (event) => {
+      if (event.target.tagName === "A") {
+          navbar.classList.remove("show");
+      }
+  });
+
 });
 
 //#####
@@ -447,5 +467,6 @@ function renderCalorieChart(data) {
       });
   }
 }
+
 
 

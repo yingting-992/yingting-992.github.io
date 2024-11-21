@@ -40,6 +40,10 @@
     }
 }
 
+.navbar .item {
+    text-align: center;
+    padding: 15px;
+}
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -74,7 +78,7 @@
 }
 
 body {
-    font-family: 'Catamaran', sans-serif;
+    /* font-family: 'Catamaran', sans-serif; */
     font-size: 16px;
     line-height: 1.5;
     color: #333333;

@@ -9,6 +9,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../Build_muscle/Build_muscle.js"></script>
     <script type="module" src="./firebase.js"></script>
+    <script type="module" src="./script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body  id="topPage">
@@ -16,143 +17,150 @@
         <div class="container">
             <h1>健康計算</h1>
             <span>Healthy Eating, Healthy Exercise.</span>
-        <a href="#" class="logo">  <!--  漢堡條 -->
-            <!-- <i class="fab fa-spotify fa-3x"></i> -->
+            <!-- <a href="../front_page/front_page.html"><img src="../圖片/logo3.png" alt="" class="logo"></a>  加入 LOGO -->
+            <!-- <a href="javascript:void(0);" class="hamburger-menu" id="hamburgerMenu">
+                <i class="fas fa-bars"></i>
+            </a> -->
             
-        </a>
-            <nav class="navbar">
+            <nav class="navbar" id="navbar">
                 <a href="../front_page/front_page.html" class="item">首頁</a>
                 <a href="../fat_loss/fat_loss.html" class="item">減脂</a>
                 <a href="../Build_muscle/Build_muscle.html" class="item">增肌</a>
                 <a href="../calculate/calculate.html" class="item">計算健康</a>
             </nav>
-        
         </div>
     </div>
-    <main>
-    <section class="form-section">
-        <div class="database">
-            <h2>基本資料</h2>
-            <p>輸入您的基本資料來計算 BMI、體脂率和基礎代謝率。</p> <br>
-            <form id="bmiForm">
-                <label for="stdnumber">學號:</label>
-                <input type="text" id="stdnumber" name="stdnumber" placeholder="請輸入學號" required >
-                <div id="editMode" style="display: none;"></div><br> <!-- 用於顯示結果 -->
-                <!--  -->     
-                <label for="name">姓名:</label>
-                <input type="text" id="name" name="name" placeholder="請輸入姓名" required><br>
-                <!--  -->
+    <main class="main-container">
+        <section class="form-section">
+            <div class="database">
+                <h2>基本資料</h2>
+                <form id="bmiForm">
+                    <label for="stdnumber">學號:</label>
+                    <input type="text" id="stdnumber" name="stdnumber" placeholder="請輸入學號" required >
+                    <div id="editMode" style="display: none;"></div><br> <!-- 用於顯示結果 -->
+                    <!--  -->     
+                    <label for="name">姓名:</label>
+                    <input type="text" id="name" name="name" placeholder="請輸入姓名" required><br>
+                    <!--  -->
 
-                <label for="age" id="lab">年齡:</label>
-                <input type="number" id="age" name="age" placeholder="請輸入年齡" required> <br>
-                <!--  -->
-                <label for="height" id="lab">身高 (cm):</label>
-                <input type="number" id="height" name="height" placeholder="請輸入身高" required> <br>
-                <!--  -->
-                <label for="weight" id="lab">體重 (kg):</label>
-                <input type="number" id="weight" name="weight" placeholder="請輸入體重" required> <br>
-                <!--  -->
-                
-                <label for="height" id="lab">性別: </label>
-                <input type="radio" id="male" name="gender" value="male">男
-                <input type="radio" id="female" name="gender" value="female">女<br>                    
-            </form>
-            <!-- 讓用戶輸入每日卡路里的表單 -->
-        <form id="calorieForm">   
-            <!-- <label for="weight">輸入今日卡路里攝取量:</label>  -->
-            <!-- <input type="number" id="weight" name="weight" > -->
-            <button type="submit">儲存更改</button>
-        </form>    
-        </div>
-        
-        
-        <div id="dataoutput">
-                <h2>BMI</h2>
-                <div id="bmiOutput"></div>
-                <div id="bmiFeedback" class="feedback"></div>
-                
-                <h2>體脂率計算結果</h2>
-                <div id="bodyFatOutput"></div>
-
-                <h2>基礎代謝率計算結果</h2>
-                <div id="bmrOutput"></div>
-        </div>
-
-        
-
-        <div class="divider">
-            <h1>每日總熱量消耗 (TDEE)</h1>
-        </div>
-
-        <div class="activity-mode-section">
-            <h2>請選擇您的活動模式</h2>
-            <div class="activity-mode">
-                <label>
-                    <input type="radio" name="mode" value="0" checked>
-                    一般
-                </label>
-                <label>
-                    <input type="radio" name="mode" value="300">
-                    減重
-                </label>
+                    <label for="age" id="lab">年齡:</label>
+                    <input type="number" id="age" name="age" placeholder="請輸入年齡" required> <br>
+                    <!--  -->
+                    <label for="height" id="lab">身高 (cm):</label>
+                    <input type="number" id="height" name="height" placeholder="請輸入身高" required> <br>
+                    <!--  -->
+                    <label for="weight" id="lab">體重 (kg):</label>
+                    <input type="number" id="weight" name="weight" placeholder="請輸入體重" required> <br>
+                    <!--  -->
+                    
+                    <label for="height" id="lab">性別: </label>
+                    <label class="gender">
+                            <input type="radio" id="male" name="gender" value="male">Male
+                        <label style="margin-left: 20px;">
+                            <input type="radio" id="female" name="gender" value="female">Female
+                        </label>    
+                    </label>                    
+                </form>
+                 
+                  
             </div>
-                <br>
-            <div class="activity-level-section">
-                <h2>選擇活動程度</h2>
-                <select id="activityLevel" name="activityLevel">
-                    <option value="1.2">久坐</option>
-                    <option value="1.375">輕度活動</option>
-                    <option value="1.55">中度活動</option>
-                    <option value="1.725">高度活動</option>
-                    <option value="1.9">非常高度活動</option>
-                </select>
-            </div>
-
-            <div id="activityBmrOutput"></div> <br>
-            <button type="button" id="calculateActivityBMRBtn">計算每日所需熱量</button>
+            <form id="calorieForm">   
+                <!-- <label for="weight">輸入今日卡路里攝取量:</label>  -->
+                <!-- <input type="number" id="weight" name="weight" > -->
+                <button type="submit">確認</button>
+            </form>   
             
-        </div>
-                
+            <div id="dataoutput">
+                <h1>計算結果</h1>
+                    <h2>BMI</h2>
+                    <div id="bmiOutput"></div>
+                    <div id="bmiFeedback" class="feedback"></div>
+                    
+                    <h2>體脂率</h2>
+                    <div id="bodyFatOutput"></div>
 
-        <!-- 備用不刪 -->
-        <span id="Insbtn" style="display: none;">儲存</span>
-        <button id="Selbtn" style="display: none;">SELECT</button>
-        <button id="Delbtn" style="display: none;">DELETE</button>
+                    <h2>基礎代謝率 (BMR) </h2>
+                    <div id="bmrOutput"></div>
+            </div>
+
+            
+            <div class="tot-activity">
+                <div class="totttt">
+                    <div class="divider">
+                        <h1>每日總熱量消耗 (TDEE)</h1>
+                    </div>
+
+                    <div class="activity-mode-section">
+                        <h2>請選擇您的活動模式</h2>
+                        <div class="activity-mode">
+                            <label  class="activity-option">
+                                <input type="radio" name="mode" value="0" checked>
+                                <span>一般</span>
+                            </label>
+                            <label  class="activity-option">
+                                <input type="radio" name="mode" value="300">
+                                <span>減重</span>
+                            </label>
+                        </div>
+                            <br>
+                        <div class="activity-level-section">
+                            <h2>選擇活動程度</h2>
+                            <div class="custom-select-wrapper">
+                                <select id="activityLevel" name="activityLevel"class="custom-select">
+                                    <option value="1.2">久坐</option>
+                                    <option value="1.375">輕度活動</option>
+                                    <option value="1.55">中度活動</option>
+                                    <option value="1.725">高度活動</option>
+                                    <option value="1.9">非常高度活動</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div id="activityBmrOutput"></div> <br>
+                        <button type="button" id="calculateActivityBMRBtn">計算每日所需熱量</button>
+                    </div>    
+                </div>
+            </div>
+                    
+
+            <!-- 備用不刪 -->
+            <span id="Insbtn" style="display: none;">儲存</span>
+            <button id="Selbtn" style="display: none;">SELECT</button>
+            <button id="Delbtn" style="display: none;">DELETE</button>
+
+            
+            
+        </section>
 
     
+
+
+
+        <!-- 右側圖片區域 -->
+        <!-- <aside class="image-section">
+            <img src="../圖片/健康操.jfif" alt="健康相關圖片">
+            
+        </aside> -->
+        <!-- 讓用戶輸入每日卡路里的表單 -->
         
-    </section>
 
-    
-
-
-
-    <!-- 右側圖片區域 -->
-    <aside class="image-section">
-        <img src="../圖片/健康操.jfif" alt="健康相關圖片">
         
-    </aside>
-    <div class="image-section2">
-        <img src="../圖片/健康操2.jfif" alt="">
-    </div>
-
-    
         <!-- 因體重只會跟著一個使用者所以不用了 -->
         <!--<div id="calorieOutput"></div>   顯示用戶輸入的卡路里 -->
-    
-       <!-- 顯示圖表 -->
-        <!-- <div id="tChart">
-            <canvas id="calorieChart"></canvas>    
-        </div>
-        <button id="clearData">Clear</button> -->
         
-    </section>
+        <!-- 顯示圖表 
+            <div id="tChart">
+                <canvas id="calorieChart"></canvas>    
+            </div>
+            <button id="clearData">Clear</button> 
+            
+        </section>-->
+        
 
-
-    <!-- 回首頁
-    <div id="Return_to_home_page">
-        <a href="../front_page/front_page.html">回首頁</a>
-    </div> -->
+        <!-- 回首頁
+        <div id="Return_to_home_page">
+            <a href="../front_page/front_page.html">回首頁</a>
+        </div> -->
    
     </main>
     <a href="javascript:void(0);" class="goTopBtn" id="goTop"><i class="fa-solid fa-chevron-up"></i></a>

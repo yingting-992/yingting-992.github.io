@@ -35,6 +35,11 @@
         }
     }
 }
+
+.navbar .item {
+    text-align: center;
+    padding: 15px;
+}
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -60,11 +65,13 @@
     color: #0e4d2d;
 }
 body {
-    font-family: 'Catamaran', sans-serif;
+    /* font-family: 'Catamaran', sans-serif; */
     font-size: 16px;
     line-height: 1.5;
     color: #333333;
     background-color: #f0f0f0; /* 背景色 */
+    margin: 0;
+    padding: 0;
 }
 a {
     text-decoration: none;
