@@ -449,7 +449,7 @@ footer{
 
 #goTop {
     position: fixed;
-    right: 20px;
+    right: 200px;
     bottom: 70px;
     display: none;
     width: 90px;  
@@ -474,7 +474,7 @@ footer{
 /* 網頁版 */
 @media screen and (min-width: 600px) {
     #goTop {
-        right: 100px;
+        right: 200px;
         width: 90px;
         height: 90px;
     }
@@ -487,7 +487,7 @@ footer{
 /* 手機版 */
 @media screen and (max-width: 600px) {
     #goTop {
-        right: 150px;  /* 讓按鈕距離右邊更近 */
+        right: 30px;  /* 讓按鈕距離右邊更近 */
         bottom: 50px; /* 讓按鈕距離底部更近 */
         width: 60px;  /* 按鈕縮小尺寸 */
         height: 60px;
