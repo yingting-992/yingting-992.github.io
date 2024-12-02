@@ -236,10 +236,14 @@ function saveAndUpdateData() {
           Gender: gender,
           Age: age,
           Height: height,
-          Weight: weight
+          Weight: weight,
+          BMI: BMI,
+          BodyFat: BODYFAT,
+          BMR: BMR
       })
       .then(() => {
           alert("Data Inserted Successfully");
+          document.getElementById("editMode").innerText = '1';
       })
       .catch((error) => {
           alert("Data Insertion Failed: " + error);
@@ -358,8 +362,8 @@ document.getElementById('calorieForm').addEventListener('submit', function(e) {
   //document.getElementById('calories').value = null;
   saveAndUpdateData();// 更新資料
   // 更新畫面
-  displayCalories(storedCalories);// 更新列表
-  renderCalorieChart(storedCalories);// 更新圖表
+  //displayCalories(storedCalories); //2024.12.2 取消 // 更新列表
+  //renderCalorieChart(storedCalories); //2024.12.2 取消 // 更新圖表
 });
 
 // 當表單Clear時執行
@@ -370,8 +374,8 @@ document.getElementById('clearData').addEventListener( 'click',function() {
   localStorage.setItem('calorieData', JSON.stringify(storedCalories));
 
   // 更新畫面
-  displayCalories(storedCalories);
-  renderCalorieChart(storedCalories);
+  //displayCalories(storedCalories); //2024.12.2 取消 
+  //renderCalorieChart(storedCalories); //2024.12.2 取消
 });
 
 
@@ -389,13 +393,14 @@ function displayCalories(data) {
       //output += `<li>${entry.date} - ${entry.weight} kg</li>`;
   });
   output += `</ul>`;
+  
   document.getElementById('calorieOutput').innerHTML = output;
 }
 
 // 當頁面加載時或數據更新後渲染圖表
 document.addEventListener('DOMContentLoaded', () => { 
   let storedCalories = JSON.parse(localStorage.getItem('calorieData')) || [];
-  renderCalorieChart(storedCalories); // 正確渲染初始圖表
+  //renderCalorieChart(storedCalories); //2024.12.2 取消// 正確渲染初始圖表
 
 
   const hamburgerMenu = document.getElementById("hamburgerMenu");

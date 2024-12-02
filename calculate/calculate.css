@@ -412,14 +412,7 @@ footer p {
     margin: 0;
     font-size: 1em;
 } */
-#calorieForm {
-    display: block;
-    flex: 1; /* 佔據 50% 的寬度 */
-    background-color: transparent;
-    margin-left: 200px ;
-    width: 100%;
-    max-width: 300px; /* 設定表單最大寬度，避免在桌面上過大 */
-}
+
 #calorieForm button {
     z-index: 10; /* 確保按鈕在其他元素上層 */
     position: relative;
@@ -431,6 +424,7 @@ footer p {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
 }
+
 button:hover {
     transform: scale(1.05);
     background-color: #089b58;
@@ -609,8 +603,8 @@ header h1 {
     
     .main-container {
         margin: 0 auto; /* 確保居中對齊 */
-    padding: 0;     /* 移除內距 */
-    width: 100%;    /* 設置容器寬度為 100% */
+        padding: 0;     /* 移除內距 */
+        /*width: 100%; */   /* 設置容器寬度為 100% */
     }
     .container {
         max-width: 1200px;
@@ -676,7 +670,7 @@ header h1 {
         align-items: center;    /* 垂直置中 */
         height: 100vh;          /* 讓容器填滿整個視窗高度 */
         margin-top: 20px;
-        margin-left: 400px ;
+        /* margin-left: 400px ; 2024.12.2 取消 */
     }
     .divider{
         display: block;
